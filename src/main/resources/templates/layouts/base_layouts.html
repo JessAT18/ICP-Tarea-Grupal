@@ -7,7 +7,7 @@
 
     <meta charset="utf-8"/>
 
-    <title>SolverTic</title>
+    <title>QUACK TEAM</title>
 
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.js"></script>
 
@@ -42,11 +42,22 @@
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false"> Estados Civiles
+                    aria-haspopup="true" aria-expanded="false"> Par&aacute;metros
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" th:href="@{/parametros/estadosciviles/formListarEstadosCiviles}">Estados Civiles</a>
                 </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"> Ventas
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" th:href="@{/ventas/categorias/formListarCategorias}">Categorias</a>
+                    <a class="dropdown-item" th:href="@{/ventas/categorias/formListarProductos}">Productos</a>
+                </div>
+                
             </li>
 
         </ul>

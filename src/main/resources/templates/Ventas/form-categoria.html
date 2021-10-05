@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts/base_layouts :: head">
+    <meta charset="utf-8" />
+    <title>Categoria</title>
 </head>
 <body>
-$END$
+<nav th:replace="layouts/base_layouts :: nav"></nav>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+            <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+            <div class="card">
+                <div class="card-header text-center"> <strong>Agregar Categorias</strong></div>
+                <div class="card_body">
+                    <form th:action="@{/ventas/categorias/grabarCategorias}" th:object="${formCategorias}" method="post">
+
+                        <div class="form-group px-2 py-2"
+                            th:classappend="${#fields.hasErrors('categoria_nm')} ? 'has-error'">
+                            <label>Nombre Categoria </label>
+                            <input type="text" class="form-control font-italic" th:field="*{categoria_nm}"
+                                th:errorclass="'form-control alert-danger'" placeholder="Nombre Categoria" />
+                            <small class="form-text text-danger offset-3" th:if="${#fields.hasErrors('categoria_nm')}"
+                                th:errors="*{categoria_nm}"></small>
+                        </div>
+
+                        <div class="form-group px-2 py-2"
+                            th:classappend="${#fields.hasErrors('estado_fl')} ? 'has-error'">
+                            <label>Estado: </label>
+                            <select name="estados" th:field="*{estado_fl}">
+                                <option th:each="estado : ${T(com.tito.apptito.entities.enums.Estados).values()}"
+                                    th:value="${estado}" th:text="${estado}"></option>
+                            </select>
+                            <small class="form-text text-danger offset-3" th:if="${#fields.hasErrors('estado_fl')}"
+                                th:errors="*{estado_fl}"></small>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <button type="submit" class="btn btn-secondary col-md-5 my-2 ">
+                                <i class="fas fa-save"><strong>Grabar</strong></i>
+                            </button>
+                        </div>
+                        <input type="hidden" th:field="*{categoria_id}" />
+                        <!-- Se hace de esta manera para modificar un registro, sino, crea o inserta uno nuevo -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../static/js/app.js" th:src="@{/js/app.js}"></script>
+<footer th:replace="layouts/base_layouts :: footer"></footer>
+<!-- autofocus -->
+
+
 </body>
 </html>

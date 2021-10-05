@@ -2,6 +2,7 @@ package com.tito.apptito.controllers.personas;
 
 import com.tito.apptito.entities.personas.Cliente;
 import com.tito.apptito.services.IClienteService;
+import com.tito.apptito.services.parametros.IEstadoCivilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +18,15 @@ public class ClienteController {
     @Autowired
     private IClienteService iClienteService;
 
+    @Autowired
+    private IEstadoCivilService iEstadoCivilService;
+
     @GetMapping("/formClientes")
     public String formClientes (Model model){
 
         model.addAttribute("formClientes", new Cliente());
+        //Se agrega este model attribute por la relacion entre cliente y estadocivil
+        model.addAttribute("formEstadoCivil", iEstadoCivilService.listarTodosLosEstadosCiviles());
 
         return  "personas/form-cliente";
 
@@ -30,6 +36,7 @@ public class ClienteController {
     public String formListaDeClientes (Model model){
 
         model.addAttribute("listaclientes", iClienteService.listarTodosLosClientes());
+        model.addAttribute("formEstadoCivil", iEstadoCivilService.listarTodosLosEstadosCiviles());
 
         return  "personas/form-lista_cliente";
 
@@ -37,9 +44,10 @@ public class ClienteController {
 
     @PostMapping("/grabarClientes")
     public String grabarClientes(@Validated @ModelAttribute("formClientes") Cliente cliente,
-                               BindingResult bindingResult, RedirectAttributes flash){
+                               BindingResult bindingResult, RedirectAttributes flash, Model model){
         if (bindingResult.hasErrors()){
             flash.addFlashAttribute("error", "Problemas al agregar al cliente");
+            model.addAttribute("formEstadoCivil", iEstadoCivilService.listarTodosLosEstadosCiviles());
             return  "personas/form-cliente";
         } else {
             iClienteService.grabarCliente(cliente);
@@ -66,6 +74,8 @@ public class ClienteController {
         Cliente cliente;
 
         cliente = iClienteService.encontrarUnCliente(id);
+        
+        model.addAttribute("formEstadoCivil", iEstadoCivilService.listarTodosLosEstadosCiviles());
 
         model.addAttribute("formClientes", cliente);
 

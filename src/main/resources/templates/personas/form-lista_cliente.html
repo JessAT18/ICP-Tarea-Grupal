@@ -25,6 +25,8 @@
                     <th>Dirección</th>
                     <th>Teléfono</th>
                     <th>Fecha de Nacimiento</th>
+                    <th>Estado Civil</th>
+                    <th>Email</th>
                     <th>Estado</th>
                     <th>Eliminar</th>
                     <th>Modificar</th>
@@ -38,6 +40,8 @@
                     <td th:text="${item.direccion_desc}"></td>
                     <td th:text="${item.telefono_desc}"></td>
                     <td th:text="${item.fch_nacimiento}"></td>
+                    <td th:text="${item.cliente_email}"></td>
+                    <td th:text="${item.estadoCivil.ecivil_desc}"></td>
                     <td th:text="${item.estado_fl}"></td>
                     <td><a th:href="@{/personas/clientes/delete_cliente/}+${item.id}" onclick="return confirm('Seguro de eliminar?')"><button class="btn btn-danger" >Eliminar</button></a>
                     <td><a th:href="@{/personas/clientes/update_cliente/}+${item.id}" onclick="return confirm('Seguro de modificar?')"><button class="btn btn-warning" >Modificar</button></a>
