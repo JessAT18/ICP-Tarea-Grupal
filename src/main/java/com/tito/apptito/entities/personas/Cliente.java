@@ -35,9 +35,9 @@ public class Cliente {
     private String cliente_apm;
 
     //Muchos clientes asociados a un estado civil
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "ecivil_id", nullable = false)
-    private EstadoCivil estadoCivil;
+//    @ManyToOne(optional = false)
+//    @JoinColumn(name = "ecivil_id", nullable = false)
+//    private EstadoCivil estadoCivil;
 
     private String direccion_desc;
 

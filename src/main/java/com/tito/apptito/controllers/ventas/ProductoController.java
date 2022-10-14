@@ -2,7 +2,7 @@ package com.tito.apptito.controllers.ventas;
 
 import com.tito.apptito.entities.ventas.Producto;
 import com.tito.apptito.services.ventas.IProductoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/ventas/productos")
+@RequiredArgsConstructor
 public class ProductoController {
 
     public static final String REDIRECT_FORMULARIO = "redirect:/ventas/productos/formProductos";
@@ -21,8 +22,7 @@ public class ProductoController {
     public static final String DELETE_ERROR = "Error";
     public static final String DELETE_ERROR_MESSAGE = "Problemas al eliminar el producto";
 
-    @Autowired
-    private IProductoService iProductoService;
+    private final IProductoService iProductoService;
 
     @GetMapping("/formProductos")
     public String formProductos(Model model){

@@ -4,9 +4,11 @@ import com.tito.apptito.daos.ventas.IProductoDao;
 import com.tito.apptito.entities.ventas.Producto;
 import com.tito.apptito.services.ventas.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProductoServiceImpl implements IProductoService {
     @Autowired
     private IProductoDao iProductoDao;

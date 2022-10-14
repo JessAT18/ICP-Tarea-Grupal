@@ -25,10 +25,10 @@ public class Producto {
     @Column(name = "producto_nm")
     private String producto_nm;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "categoria_id", nullable = false)
-    @Column(name = "categoria_id")
-    private Categoria categoria;
+//    @ManyToOne(optional = false)
+//    @JoinColumn(name = "categoria_id", nullable = false)
+//    @Column(name = "categoria_id")
+//    private Categoria categoria;
 
     @Enumerated(value = EnumType.ORDINAL)
     @Column(name = "unidad_medida")
